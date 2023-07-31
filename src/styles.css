@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'poppins';
+    src: url('./assets/Poppins-Regular.ttf');
+}
+
+
+:root{
+    --bg: #172554;
+    --ft: #f5f3ff;
+}
+
+
+body{
+    margin:0;
+    padding:0;
+    font-family: 'poppins';
+}
+
+.content{
+    height:100vh;
+    width:100vw;    
+    display: flex;    
+}
+
+.left{
+    flex:1;
+    background-color: var(--bg);
+    color:var(--ft);
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+}
+
+.logo{
+    font-size: 60px;
+    font-weight: 900;
+    padding:2%;
+}
+
+.project-container{
+    margin-top: 2%;
+    outline: solid white;
+    padding: 4%;
+    font-size: 25px;
+    display: grid;
+    gap:40px;
+    grid-template-rows: 100px;
+    grid-template-columns: 100%;
+    grid-auto-rows: 100px;
+}
+
+.project-container > div{
+    outline: white solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right{
+    flex:4;
+    background-color: var(--ft);
+    padding:2%;
+}
+
+.project-head{
+    outline: solid black;
+    text-align: center;
+    font-size: 40px;
+}
+
+.todo-container{
+    outline: yellowgreen solid;
+    padding: 2%;
+    height:80%;
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    font-size: 30px;
+}
+
+.todo-container > div{
+    background-color: lightgray;
+    padding-left: 2%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
