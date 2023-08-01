@@ -85,4 +85,17 @@ body{
     display: flex;
     align-items: center;
 }
+.todo-container > button{
+    background-color: lightgray;
+    padding-left: 2%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
 
+.create-project-btn{
+    background-color: lightgray;
+    font-size: 40px;
+    margin-top: 40px;
+}

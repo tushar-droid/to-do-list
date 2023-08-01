@@ -1,7 +1,7 @@
-const todoFactory = (name, desc, duedate, priority) =>{
-    complete = false;
-    function isComplete(){
-        
-    }
-    return {name, desc, duedate,priority}
+export default function todoFactory(name, desc, duedate, priority){
+    var complete = false;
+    const isComplete = () =>{complete = !complete}
+    return {name, desc, duedate, priority}
 }
+
+
