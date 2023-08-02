@@ -45,19 +45,13 @@ const right = () =>{
     // todo container
     const todo_cont = document.createElement('div');
     todo_cont.classList.add('todo-container');
-
-    for(var i= 0; i<4; i++){
-        const elem = document.createElement('div');
-        elem.textContent = `This is todo number: ${i+1}`;
-        todo_cont.appendChild(elem);
-    }
+    const default_todo = document.createElement('div');
+    default_todo.textContent = "Select or Add a new project!!";
+    todo_cont.appendChild(default_todo);
     
     right_side.appendChild(heading);
     right_side.appendChild(todo_cont);
-    const temp_btn = document.createElement('Button');
-    temp_btn.textContent = 'Check all projects';
-    temp_btn.classList.add('tempbtn');
-    todo_cont.appendChild(temp_btn);
+
 
     return right_side;
 }

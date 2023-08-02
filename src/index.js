@@ -2,7 +2,7 @@ import './styles.css';
 import mainPage from './mainPage';
 import todoFactory from './todo';
 import ProjectFactory from './projects';
-import { showProjects } from './DOMcontroller';
+import { showProjects, showTodos } from './DOMcontroller';
 var todoarray = [];
 const servePage = (() =>{
     var projectslist = [];
@@ -10,14 +10,28 @@ const servePage = (() =>{
     const project_btn = document.querySelector('.create-project-btn');
     project_btn.addEventListener('click', function(){
         const name= window.prompt('Enter Name for the Project: ');
+        if (name){
         projectslist.push(ProjectFactory(name));
-        showProjects(projectslist);
-    })
+        }
+        else{
+            alert("Name cannot be Empty")            
+        }
+        showProjects(projectslist);      
+        const temp_btn = document.querySelectorAll('.project');
+        temp_btn.forEach(btn => {
+            btn.addEventListener("click", getalltodos)
+        });
+    });
 
-    const tempbtn = document.querySelector('.tempbtn');
-    tempbtn.addEventListener('click', function(){
-        console.log(projectslist);
-    })
+    function getalltodos(event){
+        showTodos(projectslist[event.target.id].getAllTodos());        
+    }
+
+
+
+ 
+
+
 
 
     // const tempbtn = document.querySelector('.tempbtn');
