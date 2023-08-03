@@ -1,5 +1,5 @@
 export default function ProjectFactory(name){
-    var alltodos = ['a default todo'];
+    var alltodos = [];
     alltodos.push(name);
     const getAllTodos = () => alltodos;
     const addTodo = (todo) => alltodos.push(todo);

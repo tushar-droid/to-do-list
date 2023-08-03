@@ -2,7 +2,7 @@ import './styles.css';
 import mainPage from './mainPage';
 import todoFactory from './todo';
 import ProjectFactory from './projects';
-import { showProjects, showTodos } from './DOMcontroller';
+import { showProjects, showTodos,shownewTodo } from './DOMcontroller';
 var todoarray = [];
 const servePage = (() =>{
     var projectslist = [];
@@ -16,21 +16,27 @@ const servePage = (() =>{
         else{
             alert("Name cannot be Empty")            
         }
+        projectscontroller();
+    });
+
+    function projectscontroller(){
         showProjects(projectslist);      
         const temp_btn = document.querySelectorAll('.project');
         temp_btn.forEach(btn => {
-            btn.addEventListener("click", getalltodos)
+            btn.addEventListener("click", (event) => {
+                const target_id = event.target.id
+                showTodos(projectslist[target_id].getAllTodos());    
+                const addbtn = document.querySelector('.add-new-todo-btn');
+                addbtn.addEventListener('click', function(){
+                    var t= 'this is the new todo';
+                    projectslist[target_id].addTodo(t);
+                    shownewTodo(t);
+                })
+
+            }); 
         });
-    });
-
-    function getalltodos(event){
-        showTodos(projectslist[event.target.id].getAllTodos());        
     }
-
-
-
- 
-
+    
 
 
 
