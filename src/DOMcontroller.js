@@ -1,10 +1,8 @@
 import delIconsrc from './assets/delete.svg';
-import ProjectFactory from './projects';
 
 function showProjects(projects){
     const container = document.querySelector('.project-container');
     container.innerHTML  = '';
-
     projects.forEach((project,id) => {        
         const block = document.createElement('div');
         block.classList.add('project');
@@ -13,9 +11,14 @@ function showProjects(projects){
         const delIcon = new Image();
         delIcon.classList.add('delete-project-icon');
         delIcon.src = delIconsrc;
+        delIcon.setAttribute('projectId', id);
         block.appendChild(delIcon);
         container.appendChild(block)
    });
+}
+
+function DeleteProject(projectId){
+
 }
 
 

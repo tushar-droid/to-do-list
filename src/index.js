@@ -3,7 +3,6 @@ import mainPage from './mainPage';
 import todoFactory from './todo';
 import ProjectFactory from './projects';
 import { showProjects, showTodos,shownewTodo } from './DOMcontroller';
-var todoarray = [];
 const servePage = (() =>{
     var projectslist = [];
     mainPage();
@@ -22,21 +21,36 @@ const servePage = (() =>{
     function projectscontroller(){
         showProjects(projectslist);      
         const temp_btn = document.querySelectorAll('.project');
+        const delbtn = document.querySelectorAll('.delete-project-icon');
+        delbtn.forEach(element => {
+            element.addEventListener('click', deleteProject)
+        });
         temp_btn.forEach(btn => {
-            btn.addEventListener("click", (event) => {
-                const target_id = event.target.id
+            btn.addEventListener("click", (event) => {                
+                const target_id = event.target.id;
+                if(event.target.className == 'delete-project-icon'){
+                    return
+                }
                 showTodos(projectslist[target_id].getAllTodos());    
                 const addbtn = document.querySelector('.add-new-todo-btn');
                 addbtn.addEventListener('click', function(){
                     var t= 'this is the new todo';
                     projectslist[target_id].addTodo(t);
-                    shownewTodo(t);
+                    shownewTodo(t);                    
                 })
 
             }); 
         });
+
     }
     
+    function deleteProject(event){
+        console.log("deleteing the item")
+        const projectId = this.getAttribute("projectid");
+        projectslist.splice(projectId, 1);
+        console.log(projectslist);
+        projectscontroller();
+    }
 
 
 
