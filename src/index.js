@@ -26,17 +26,22 @@ const servePage = (() =>{
             element.addEventListener('click', deleteProject)
         });
         temp_btn.forEach(btn => {
-            btn.addEventListener("click", (event) => {                
+            btn.addEventListener("click", (event) => {         
+                const prev_proj = document.querySelector('.active-project');
+                if(prev_proj){
+                    prev_proj.classList.remove('active-project');
+                }                
+                btn.classList.add('active-project');
                 const target_id = event.target.id;
                 if(event.target.className == 'delete-project-icon'){
                     return
                 }
-                showTodos(projectslist[target_id].getAllTodos());    
+                showTodos(projectslist[target_id].getAllTodos(), projectslist[target_id].name);                    
                 const addbtn = document.querySelector('.add-new-todo-btn');
                 addbtn.addEventListener('click', function(){
-                    var t= 'this is the new todo';
-                    projectslist[target_id].addTodo(t);
-                    shownewTodo(t);                    
+                    var newtodo = window.prompt('Enter the New todo');
+                    projectslist[target_id].addTodo(newtodo);
+                    shownewTodo(newtodo);                    
                 })
 
             }); 
@@ -52,18 +57,6 @@ const servePage = (() =>{
         projectscontroller();
     }
 
-
-
-    // const tempbtn = document.querySelector('.tempbtn');
-    // tempbtn.addEventListener("click", function(){
-    //     const name= window.prompt('Enter Name: ');
-    //     const desc = window.prompt('Enter Desciption: ');
-    //     const date = window.prompt('Enter Due Date: ');
-    //     const pr = window.prompt('Enter Priority: ');
-    //     var val = todoFactory(name, desc, date, pr);
-    //     todoarray.push(val);
-    //     console.log(todoarray)
-    // })
 
 
 

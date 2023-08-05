@@ -17,12 +17,12 @@ function showProjects(projects){
    });
 }
 
-function DeleteProject(projectId){
-
-}
 
 
-function showTodos(alltodos){
+
+function showTodos(alltodos, pr_name){
+    const heading = document.querySelector('.project-head');
+    heading.textContent = pr_name;
     const container = document.querySelector('.todo-container')
     container.innerHTML = '';
     alltodos.forEach(todo => {

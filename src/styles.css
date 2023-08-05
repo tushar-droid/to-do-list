@@ -110,3 +110,13 @@ body{
     filter: invert(100%);
 
 }
+
+.add-new-todo-btn{
+    display: flex;
+    justify-content: center;
+    outline: black solid
+}
+
+.active-project{
+    background-color: green;
+}
