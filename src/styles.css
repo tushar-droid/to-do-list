@@ -108,7 +108,6 @@ body{
 .delete-project-icon{
     height: 50%;
     filter: invert(100%);
-
 }
 
 .add-new-todo-btn{
@@ -119,4 +118,15 @@ body{
 
 .active-project{
     background-color: green;
+}
+
+.todo-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+.todo-item > .delete-todo-icon {
+    height: 80%;
+    filter: invert(0%);
 }

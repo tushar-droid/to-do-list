@@ -3,6 +3,7 @@ export default function ProjectFactory(name){
     alltodos.push(name);
     const getAllTodos = () => alltodos;
     const addTodo = (todo) => alltodos.push(todo);
-    return {name, alltodos, getAllTodos, addTodo};
+    const todosInd = () => alltodos.length-1;
+    return {name, alltodos, getAllTodos, addTodo, todosInd};
 }
 

@@ -16,8 +16,8 @@ const servePage = (() =>{
             alert("Name cannot be Empty")            
         }
         projectscontroller();
-    });
 
+    });
     function projectscontroller(){
         showProjects(projectslist);      
         const temp_btn = document.querySelectorAll('.project');
@@ -26,40 +26,66 @@ const servePage = (() =>{
             element.addEventListener('click', deleteProject)
         });
         temp_btn.forEach(btn => {
-            btn.addEventListener("click", (event) => {         
-                const prev_proj = document.querySelector('.active-project');
+            btn.addEventListener("click", projectClick); 
+        });
+    }
+
+
+    function projectClick(event){
+        const prev_proj = document.querySelector('.active-project');                
                 if(prev_proj){
                     prev_proj.classList.remove('active-project');
-                }                
-                btn.classList.add('active-project');
+                    console.log('this also worked')
+                }              
+                this.classList.add('active-project');
                 const target_id = event.target.id;
                 if(event.target.className == 'delete-project-icon'){
                     return
                 }
-                showTodos(projectslist[target_id].getAllTodos(), projectslist[target_id].name);                    
-                const addbtn = document.querySelector('.add-new-todo-btn');
-                addbtn.addEventListener('click', function(){
-                    var newtodo = window.prompt('Enter the New todo');
-                    projectslist[target_id].addTodo(newtodo);
-                    shownewTodo(newtodo);                    
-                })
-
-            }); 
-        });
+                showTodos(projectslist[target_id].getAllTodos(), projectslist[target_id].name);          
+                TodoController(target_id);   
 
     }
+
+
+
     
     function deleteProject(event){
-        console.log("deleteing the item")
         const projectId = this.getAttribute("projectid");
-        projectslist.splice(projectId, 1);
-        console.log(projectslist);
+        projectslist.splice(projectId, 1);        
         projectscontroller();
+        const prev_project = document.getElementById(projectId-1);
+        //projectClick(document.getElementById(projectId-1))
+        // projectClick());
+    }
+
+    function TodoController(target_id){
+        var delTodoIcon = document.querySelectorAll('.delete-todo-icon');
+        delTodoIcon.forEach(el => {
+            el.addEventListener('click', deleteTodo)
+        });          
+        const addbtn = document.querySelector('.add-new-todo-btn');
+        addbtn.addEventListener('click', function(){
+            var newtodo = window.prompt('Enter the New todo');
+            projectslist[target_id].addTodo(newtodo);
+            shownewTodo(newtodo, projectslist[target_id].todosInd());   
+            delTodoIcon = [];
+            delTodoIcon = document.querySelectorAll('.delete-todo-icon')
+            delTodoIcon.forEach(icon => {
+                icon.addEventListener('click', deleteTodo);
+            });                                               
+        })   
     }
 
 
 
 
-
-
+    function deleteTodo(){
+        const proj = document.querySelector('.active-project');
+        const activeProject = proj.id;
+        const todoId = this.parentNode.getAttribute('todo-id');
+        projectslist[activeProject].alltodos.splice(todoId, 1);        
+        showTodos(projectslist[activeProject].getAllTodos(), projectslist[activeProject].name);          
+        TodoController(activeProject)
+    }
 })();
