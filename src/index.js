@@ -2,7 +2,7 @@ import './styles.css';
 import mainPage from './mainPage';
 import todoFactory from './todo';
 import ProjectFactory from './projects';
-import { showProjects, showTodos,shownewTodo } from './DOMcontroller';
+import { showProjects, showTodos,shownewTodo,openTodoModal } from './DOMcontroller';
 const servePage = (() =>{
     var projectslist = [];
     mainPage();
@@ -17,13 +17,14 @@ const servePage = (() =>{
         }
         projectscontroller();
 
+
     });
     function projectscontroller(){
         showProjects(projectslist);      
-        const temp_btn = document.querySelectorAll('.project');
+        const proj = document.querySelectorAll('.project');
         const delbtn = document.querySelectorAll('.delete-project-icon');
 
-        temp_btn.forEach(btn => {
+        proj.forEach(btn => {
             btn.addEventListener("click", projectClick); 
         });
         delbtn.forEach(element => {
@@ -67,6 +68,7 @@ const servePage = (() =>{
         const addbtn = document.querySelector('.add-new-todo-btn');
         addbtn.addEventListener('click', function(){
             var newtodo = window.prompt('Enter the New todo');
+            openTodoModal();
             projectslist[target_id].addTodo(newtodo);
             shownewTodo(newtodo, projectslist[target_id].todosInd());   
             delTodoIcon = [];
@@ -88,4 +90,10 @@ const servePage = (() =>{
         showTodos(projectslist[activeProject].getAllTodos(), projectslist[activeProject].name);          
         TodoController(activeProject)
     }
+
+
+
 })();
+
+
+

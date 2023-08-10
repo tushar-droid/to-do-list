@@ -52,9 +52,24 @@ function shownewTodo(todo, ind){
     todo_block.appendChild(delIcon);
     const btn = document.querySelector('.add-new-todo-btn')
     container.insertBefore(todo_block, btn)
+}
 
+function openTodoModal(){
+    const backdrop = document.createElement('div');
+    backdrop.classList.add('backdrop');
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.textContent = 'Modal';
+    const btn = document.createElement('button');
+    btn.textContent = 'close';
+    btn.addEventListener('click', function(){
+        backdrop.style.display = 'none';
+    })
+    modal.appendChild(btn);
+    backdrop.appendChild(modal);    
+    document.body.appendChild(backdrop);        
 }
 
 
 
-export{showProjects, showTodos, shownewTodo}
+export{showProjects, showTodos, shownewTodo,openTodoModal}
