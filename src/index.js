@@ -22,11 +22,12 @@ const servePage = (() =>{
         showProjects(projectslist);      
         const temp_btn = document.querySelectorAll('.project');
         const delbtn = document.querySelectorAll('.delete-project-icon');
-        delbtn.forEach(element => {
-            element.addEventListener('click', deleteProject)
-        });
+
         temp_btn.forEach(btn => {
             btn.addEventListener("click", projectClick); 
+        });
+        delbtn.forEach(element => {
+            element.addEventListener('click', deleteProject)
         });
     }
 
@@ -36,15 +37,16 @@ const servePage = (() =>{
                 if(prev_proj){
                     prev_proj.classList.remove('active-project');
                     console.log('this also worked')
-                }              
+                }                                    
                 this.classList.add('active-project');
-                const target_id = event.target.id;
-                if(event.target.className == 'delete-project-icon'){
-                    return
+                var target_id = event.target.id;
+                if(event.target.className == 'delete-project-icon'){                    
+                    target_id = this.id-1;                    
+                    const prev_elem = document.getElementById(target_id);
+                    prev_elem.classList.add('active-project');
                 }
                 showTodos(projectslist[target_id].getAllTodos(), projectslist[target_id].name);          
                 TodoController(target_id);   
-
     }
 
 
@@ -54,9 +56,7 @@ const servePage = (() =>{
         const projectId = this.getAttribute("projectid");
         projectslist.splice(projectId, 1);        
         projectscontroller();
-        const prev_project = document.getElementById(projectId-1);
-        //projectClick(document.getElementById(projectId-1))
-        // projectClick());
+        // const prev_project = document.getElementById(projectId-1);        
     }
 
     function TodoController(target_id){
