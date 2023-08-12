@@ -148,4 +148,37 @@ body{
     background-color: white;
     height:50%;
     width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 30px;
+    overflow: hidden;
+}
+
+form{
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-gap: 10%;
+}
+
+form >*{
+    font-size: 30px;
+}
+
+
+.desc-container{
+    display: flex;
+    align-items: center;
+}
+
+.close-modal{
+    position: absolute;
+    top:5%;
+    right: 5%;
+}
+
+.submit-btn{
+    grid-column: 1 /3;
+    font-size: 30px;
 }

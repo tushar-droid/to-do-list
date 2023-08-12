@@ -67,16 +67,26 @@ const servePage = (() =>{
         });          
         const addbtn = document.querySelector('.add-new-todo-btn');
         addbtn.addEventListener('click', function(){
-            var newtodo = window.prompt('Enter the New todo');
             openTodoModal();
-            projectslist[target_id].addTodo(newtodo);
-            shownewTodo(newtodo, projectslist[target_id].todosInd());   
-            delTodoIcon = [];
-            delTodoIcon = document.querySelectorAll('.delete-todo-icon')
-            delTodoIcon.forEach(icon => {
-                icon.addEventListener('click', deleteTodo);
-            });                                               
-        })   
+            var title, desc, duedate, priority;
+
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.addEventListener('click', function(){
+                title = document.getElementById('title').value;
+                desc = document.getElementById('description').value;
+                duedate = document.getElementById('duedate').value;
+                priority = document.getElementById('priority').value;
+                var newtodo = todoFactory(title, desc, duedate, priority);
+                projectslist[target_id].addTodo(newtodo);
+                shownewTodo(newtodo, projectslist[target_id].todosInd());   
+                delTodoIcon = [];
+                delTodoIcon = document.querySelectorAll('.delete-todo-icon')
+                delTodoIcon.forEach(icon => {
+                    icon.addEventListener('click', deleteTodo);
+                });                                               
+            })   
+            });
+
     }
 
 

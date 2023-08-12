@@ -27,7 +27,16 @@ function showTodos(alltodos, pr_name){
         const todo_block = document.createElement('div');
         todo_block.classList.add('todo-item');
         todo_block.setAttribute('todo-id', ind)
-        todo_block.textContent = todo;
+
+
+    //add new divs to accomodate title, desc, duedate, and priority
+    
+    todo_block.textContent = todo.name;
+    
+
+    //till here
+        
+        
         const delIcon = new Image();
         delIcon.classList.add('delete-todo-icon');
         delIcon.src = delIconsrc;
@@ -44,7 +53,16 @@ function shownewTodo(todo, ind){
     const container = document.querySelector('.todo-container')
     const todo_block = document.createElement('div');
     todo_block.classList.add('todo-item');
-    todo_block.textContent = todo;
+    
+    
+    //add new divs to accomodate title, desc, duedate, and priority
+    
+    todo_block.textContent = todo.name;
+    
+
+    //till here
+
+
     todo_block.setAttribute('todo-id', ind)
     const delIcon = new Image();
     delIcon.classList.add('delete-todo-icon');
@@ -56,18 +74,48 @@ function shownewTodo(todo, ind){
 
 function openTodoModal(){
     const backdrop = document.createElement('div');
-    backdrop.classList.add('backdrop');
     const modal = document.createElement('div');
-    modal.classList.add('modal');
-    modal.textContent = 'Modal';
     const btn = document.createElement('button');
-    btn.textContent = 'close';
+    
+
+    backdrop.classList.add('backdrop');
+    modal.classList.add('modal');
+    btn.classList.add('close-modal');
+    btn.textContent = 'X';
+
     btn.addEventListener('click', function(){
         backdrop.style.display = 'none';
-    })
+    });
+
+
+    createForm(modal);
     modal.appendChild(btn);
     backdrop.appendChild(modal);    
-    document.body.appendChild(backdrop);        
+    document.body.appendChild(backdrop);       
+
+
+}
+
+function createForm(container){
+    container.innerHTML = `
+    <form method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+        <label for="duedate">Due Date:</label>
+        <input type="text" id="duedate" name="duedate" required>
+
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority" required>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <input type="button" value="Submit" class='submit-btn'>
+    </form>
+    `
 }
 
 
