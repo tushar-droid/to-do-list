@@ -1,3 +1,6 @@
+import emptyicon from './assets/emptyimage.png';
+
+
 
 export default function mainPage(){
     const container = document.querySelector('.content');
@@ -36,22 +39,23 @@ const left = () =>{
 const right = () =>{
     const right_side= document.createElement('div');
     right_side.classList.add('right');
-
+    const empimg = new Image();
+    empimg.src = emptyicon;
     // project heading
     const heading = document.createElement('h1');
     heading.textContent = 'Project Name';
     heading.classList.add('project-head');
-
+    empimg.classList.add('empty-image')
     // todo container
     const todo_cont = document.createElement('div');
     todo_cont.classList.add('todo-container');
     const default_todo = document.createElement('div');
     default_todo.textContent = "Select or Add a new project!!";
     todo_cont.appendChild(default_todo);
-    
+    todo_cont.appendChild(empimg);
     right_side.appendChild(heading);
     right_side.appendChild(todo_cont);
-
+    
 
     return right_side;
 }

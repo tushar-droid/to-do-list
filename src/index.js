@@ -17,7 +17,6 @@ const servePage = (() =>{
         }
         projectscontroller();
 
-
     });
     function projectscontroller(){
         showProjects(projectslist);      
@@ -55,9 +54,29 @@ const servePage = (() =>{
     
     function deleteProject(event){
         const projectId = this.getAttribute("projectid");
-        projectslist.splice(projectId, 1);        
-        projectscontroller();
-        // const prev_project = document.getElementById(projectId-1);        
+        projectslist.splice(projectId, 1);     
+        if(projectslist.length ==0){
+            const container = document.querySelector('.content');
+            container.innerHTML = ``;
+            mainPage();
+            const project_btn = document.querySelector('.create-project-btn');
+            project_btn.addEventListener('click', function(){
+                const name= window.prompt('Enter Name for the Project: ');
+                if (name){
+                projectslist.push(ProjectFactory(name));
+                }
+                else{
+                    alert("Name cannot be Empty")            
+                }
+                projectscontroller();
+        
+            });
+        }
+        else{
+            projectscontroller();
+        }
+        
+        
     }
 
     function TodoController(target_id){

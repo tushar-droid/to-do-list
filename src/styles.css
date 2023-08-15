@@ -74,7 +74,6 @@ body{
 }
 
 .todo-container{
-    outline: yellowgreen solid;
     padding: 2%;
     height:80%;
     display: flex;
@@ -197,4 +196,11 @@ form >*{
 .todo-priority{
     height: 100%;
     width: 2%;
+}
+
+.empty-image{
+    height: 50%;
+    width:40%;
+    padding-left: 25%;
+    padding-top:10%;
 }
