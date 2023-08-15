@@ -69,7 +69,6 @@ const servePage = (() =>{
         addbtn.addEventListener('click', function(){
             openTodoModal();
             var title, desc, duedate, priority;
-
             const submitBtn = document.querySelector('.submit-btn');
             submitBtn.addEventListener('click', function(){
                 title = document.getElementById('title').value;
@@ -83,7 +82,9 @@ const servePage = (() =>{
                 delTodoIcon = document.querySelectorAll('.delete-todo-icon')
                 delTodoIcon.forEach(icon => {
                     icon.addEventListener('click', deleteTodo);
-                });                                               
+                });           
+                const bd = document.querySelector('.backdrop');
+                bd.remove();      
             })   
             });
 

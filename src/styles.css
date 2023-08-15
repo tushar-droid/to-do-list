@@ -182,3 +182,19 @@ form >*{
     grid-column: 1 /3;
     font-size: 30px;
 }
+
+.low{
+    background-color: green;
+}
+.medium {
+    background-color: orange;
+}
+
+.high{
+    background-color: red;
+}
+
+.todo-priority{
+    height: 100%;
+    width: 2%;
+}

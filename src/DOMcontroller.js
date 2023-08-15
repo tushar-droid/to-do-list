@@ -1,5 +1,7 @@
 import delIconsrc from './assets/delete.svg';
 
+
+
 function showProjects(projects){
     const container = document.querySelector('.project-container');
     container.innerHTML  = '';
@@ -27,15 +29,21 @@ function showTodos(alltodos, pr_name){
         const todo_block = document.createElement('div');
         todo_block.classList.add('todo-item');
         todo_block.setAttribute('todo-id', ind)
-
-
-    //add new divs to accomodate title, desc, duedate, and priority
-    
-    todo_block.textContent = todo.name;
-    
-
-    //till here
         
+        const pr = document.createElement('div');
+        const title = document.createElement('div');
+        const desc = document.createElement('div');
+        const duedate = document.createElement('div');
+
+        pr.classList.add(todo.priority);
+        title.textContent = todo.name;
+        desc.textContent = todo.desc;
+        duedate.textContent = todo.duedate;
+
+        todo_block.appendChild(pr);
+        todo_block.appendChild(title);
+        todo_block.appendChild(desc);
+        todo_block.appendChild(duedate);
         
         const delIcon = new Image();
         delIcon.classList.add('delete-todo-icon');
@@ -54,14 +62,26 @@ function shownewTodo(todo, ind){
     const todo_block = document.createElement('div');
     todo_block.classList.add('todo-item');
     
-    
-    //add new divs to accomodate title, desc, duedate, and priority
-    
-    todo_block.textContent = todo.name;
-    
+     
+    const pr = document.createElement('div');
+    pr.classList.add('todo-priority')
+    const title = document.createElement('div');
+    title.classList.add('todo-title')
+    const desc = document.createElement('div');
+    desc.classList.add('todo-desc')
+    const duedate = document.createElement('div');
+    duedate.classList.add('todo-duedate');
 
-    //till here
+    pr.classList.add(todo.priority);
+    title.textContent = todo.name;
+    desc.textContent = todo.desc;
+    duedate.textContent = todo.duedate;
 
+    todo_block.appendChild(pr);
+    todo_block.appendChild(title);
+    todo_block.appendChild(desc);
+    todo_block.appendChild(duedate);
+  
 
     todo_block.setAttribute('todo-id', ind)
     const delIcon = new Image();
@@ -84,7 +104,7 @@ function openTodoModal(){
     btn.textContent = 'X';
 
     btn.addEventListener('click', function(){
-        backdrop.style.display = 'none';
+        backdrop.remove();
     });
 
 
