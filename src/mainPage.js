@@ -43,15 +43,15 @@ const right = () =>{
     empimg.src = emptyicon;
     // project heading
     const heading = document.createElement('h1');
-    heading.textContent = 'Project Name';
+    heading.textContent = 'Select a project or Add a new project';
     heading.classList.add('project-head');
     empimg.classList.add('empty-image')
     // todo container
     const todo_cont = document.createElement('div');
     todo_cont.classList.add('todo-container');
-    const default_todo = document.createElement('div');
-    default_todo.textContent = "Select or Add a new project!!";
-    todo_cont.appendChild(default_todo);
+    // const default_todo = document.createElement('div');
+    // default_todo.textContent = "Select or Add a new project!!";
+    // todo_cont.appendChild(default_todo);
     todo_cont.appendChild(empimg);
     right_side.appendChild(heading);
     right_side.appendChild(todo_cont);

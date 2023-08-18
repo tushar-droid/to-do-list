@@ -1,5 +1,5 @@
 import delIconsrc from './assets/delete.svg';
-
+import { format, compareAsc, parseISO } from 'date-fns';
 
 
 function showProjects(projects){
@@ -34,11 +34,18 @@ function showTodos(alltodos, pr_name){
         const title = document.createElement('div');
         const desc = document.createElement('div');
         const duedate = document.createElement('div');
-
+        pr.classList.add('todo-priority')
         pr.classList.add(todo.priority);
         title.textContent = todo.name;
         desc.textContent = todo.desc;
-        duedate.textContent = todo.duedate;
+        duedate.textContent = format(parseISO(todo.duedate), 'MM/dd/yyyy');
+
+        title.classList.add('todo-title')
+        desc.classList.add('todo-desc')
+        duedate.classList.add('todo-duedate');
+
+
+
 
         todo_block.appendChild(pr);
         todo_block.appendChild(title);
@@ -50,6 +57,7 @@ function showTodos(alltodos, pr_name){
         delIcon.src = delIconsrc;
         todo_block.appendChild(delIcon);
         container.appendChild(todo_block);
+        todo_block.addEventListener('click', openTodo)
     });
     const addtodobtn = document.createElement('div');
     addtodobtn.classList.add(`add-new-todo-btn`);
@@ -60,9 +68,7 @@ function showTodos(alltodos, pr_name){
 function shownewTodo(todo, ind){
     const container = document.querySelector('.todo-container')
     const todo_block = document.createElement('div');
-    todo_block.classList.add('todo-item');
-    
-     
+    todo_block.classList.add('todo-item');     
     const pr = document.createElement('div');
     pr.classList.add('todo-priority')
     const title = document.createElement('div');
@@ -75,7 +81,7 @@ function shownewTodo(todo, ind){
     pr.classList.add(todo.priority);
     title.textContent = todo.name;
     desc.textContent = todo.desc;
-    duedate.textContent = todo.duedate;
+    duedate.textContent = format(parseISO(todo.duedate), 'MM/dd/yyyy');
 
     todo_block.appendChild(pr);
     todo_block.appendChild(title);
@@ -89,7 +95,8 @@ function shownewTodo(todo, ind){
     delIcon.src = delIconsrc;
     todo_block.appendChild(delIcon);
     const btn = document.querySelector('.add-new-todo-btn')
-    container.insertBefore(todo_block, btn)
+    container.insertBefore(todo_block, btn);
+    todo_block.addEventListener('click', openTodo)
 }
 
 function openTodoModal(){
@@ -122,9 +129,9 @@ function createForm(container){
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
         <label for="description">Description:</label>
-        <textarea id="description" name="description" rows="4" required></textarea>
+        <textarea id="description" name="description" rows="5" required></textarea>
         <label for="duedate">Due Date:</label>
-        <input type="text" id="duedate" name="duedate" required>
+        <input type="date" id="duedate" name="duedate" required>
 
         <label for="priority">Priority:</label>
         <select id="priority" name="priority" required>
@@ -137,6 +144,43 @@ function createForm(container){
     </form>
     `
 }
+
+function openTodo(){
+    console.warn('this is this', this)
+    const bd = document.createElement('div')
+    const modal = document.createElement('div');
+    modal.classList.add('todo-modal');   
+    const title = document.createElement('h1');
+    const desc = document.createElement('h2');
+    const pr = document.createElement('h2');
+    const duedate = document.createElement('h2');
+    title.textContent = this.querySelector('.todo-title').textContent;
+    desc.textContent = this.querySelector('.todo-desc').textContent;
+    duedate.textContent = this.querySelector('.todo-duedate').textContent;
+    pr.textContent = this.querySelector('.todo-priority').classList[1];
+    modal.appendChild(title);
+    modal.appendChild(desc);
+    modal.appendChild(duedate);
+    modal.appendChild(pr);
+
+    const btn = document.createElement('button');
+    btn.classList.add('close-modal');
+    btn.textContent = 'X';
+
+    btn.addEventListener('click', function(){
+        bd.remove();
+    });
+
+
+    modal.appendChild(btn);
+
+
+
+    bd.classList.add('backdrop');
+    bd.appendChild(modal);
+    document.body.appendChild(bd);
+}
+
 
 
 

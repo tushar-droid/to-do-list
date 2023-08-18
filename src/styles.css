@@ -30,6 +30,8 @@ body{
     display: flex;
     flex-direction: column;
     padding: 2%;
+    overflow-y: auto;
+
 }
 
 .logo{
@@ -40,25 +42,23 @@ body{
 
 .project-container{
     margin-top: 2%;
-    outline: solid white;
     padding: 4%;
-    font-size: 25px;
+    font-size: 18px;
     display: grid;
-    gap:40px;
-    grid-template-rows: 100px;
+    grid-template-rows: 80px;
     grid-template-columns: 100%;
-    grid-auto-rows: 100px;
+    grid-auto-rows: 80px;
 }
 
 .project-container > div{
-    outline: white solid;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     display: flex;
-    justify-content: center;
-    gap:10%;
+    height: 80%;
+    justify-content: space-evenly;
+    background-color: rgba(179, 177, 177, 0.533);
 }
 
 .right{
@@ -68,9 +68,9 @@ body{
 }
 
 .project-head{
-    outline: solid black;
+    
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .todo-container{
@@ -79,7 +79,7 @@ body{
     display: flex;
     flex-direction: column;
     gap:30px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .todo-container > div{
@@ -95,12 +95,12 @@ body{
     height: 60px;
     display: flex;
     align-items: center;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .create-project-btn{
     background-color: lightgray;
-    font-size: 40px;
+    font-size: 30px;
     margin-top: 40px;
 }
 
@@ -112,7 +112,6 @@ body{
 .add-new-todo-btn{
     display: flex;
     justify-content: center;
-    outline: black solid
 }
 
 .active-project{
@@ -123,6 +122,7 @@ body{
     display: flex;
     justify-content: space-between;
     padding: 0 10%;
+    transition: all 0.3s;
 }
 
 .todo-item > .delete-todo-icon {
@@ -151,18 +151,24 @@ body{
     align-items: center;
     justify-content: center;
     position: relative;
-    font-size: 30px;
+    font-size: 15px;
     overflow: hidden;
 }
 
 form{
     display: grid;
+    height: 80%;
+    width: 80%;
     grid-template-columns: max-content max-content;
+    grid-template-rows: 1fr 3fr 1fr 1fr 1fr;
     grid-gap: 10%;
+    align-items: center;
+    justify-content: center;
 }
 
 form >*{
-    font-size: 30px;
+    font-size: 20px;
+    font-family: 'poppins';
 }
 
 
@@ -179,7 +185,7 @@ form >*{
 
 .submit-btn{
     grid-column: 1 /3;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .low{
@@ -203,4 +209,40 @@ form >*{
     width:40%;
     padding-left: 25%;
     padding-top:10%;
+}
+
+.project{
+    transition: all 0.3s;
+
+}
+
+.project:hover{
+    background-color: rgb(58, 57, 57);
+    transform: scale(1.1) perspective(1px);
+}
+
+.todo-item:hover{
+    transform: scale(1.05) perspective(1px);
+    cursor: pointer;
+}
+
+.todo-desc{
+    width:400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.todo-modal{
+    background-color: white;
+    height:50%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 15px;
+    overflow: hidden;
 }

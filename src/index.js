@@ -80,6 +80,7 @@ const servePage = (() =>{
     }
 
     function TodoController(target_id){
+        
         var delTodoIcon = document.querySelectorAll('.delete-todo-icon');
         delTodoIcon.forEach(el => {
             el.addEventListener('click', deleteTodo)
