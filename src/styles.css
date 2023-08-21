@@ -68,7 +68,7 @@ body{
 }
 
 .project-head{
-    
+    text-transform: uppercase;
     text-align: center;
     font-size: 30px;
 }
@@ -112,7 +112,17 @@ body{
 .add-new-todo-btn{
     display: flex;
     justify-content: center;
+    width:20%;
+    align-self: center;
+    transition: all 0.3s;
 }
+
+.add-new-todo-btn:hover{
+    transform: scale(1.05) perspective(1px);
+    cursor: pointer;
+    background-color: lightgreen;
+}
+
 
 .active-project{
     background-color: green;
@@ -144,27 +154,38 @@ body{
 }
 
 .modal{
-    background-color: white;
-    height:50%;
-    width: 45%;
+    background-color: black;
+    height:70%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     font-size: 15px;
     overflow: hidden;
+    border-radius: 20px;
+    transition: all 0.3s;
 }
 
 form{
     display: grid;
-    height: 80%;
-    width: 80%;
+    height: 60%;
+    width: 60%;
     grid-template-columns: max-content max-content;
     grid-template-rows: 1fr 3fr 1fr 1fr 1fr;
     grid-gap: 10%;
     align-items: center;
     justify-content: center;
+    background-color: rgba(108, 105, 105, 0.646);
+    color:white;
+    padding: 40px 20px;
+    border-radius: 20px;
 }
+
+.modal:hover{
+    transform: scale(1.05) perspective(1px);
+}
+
 
 form >*{
     font-size: 20px;
@@ -213,12 +234,13 @@ form >*{
 
 .project{
     transition: all 0.3s;
-
+    text-transform: capitalize;
 }
 
 .project:hover{
-    background-color: rgb(58, 57, 57);
+    background-color: #79eb79;
     transform: scale(1.1) perspective(1px);
+    color:black;
 }
 
 .todo-item:hover{
