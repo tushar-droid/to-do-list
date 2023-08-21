@@ -4,22 +4,26 @@ import todoFactory from './todo';
 import ProjectFactory from './projects';
 import { showProjects, showTodos,shownewTodo,openTodoModal } from './DOMcontroller';
 const servePage = (() =>{
+    
+    mainPage();
     var projectslist = [];
     if (storageAvailable("localStorage")) {
-        console.log('Local storage is available')
-        console.log(localStorage);
-      } else {
-        console.log('Not available');
-    }
-    
+        var stored_list = (JSON.parse(localStorage.getItem('projectslist')))
+        console.log(stored_list);
+        if(stored_list !==null){
+            stored_list.forEach(element => {
+                projectslist.push(ProjectFactory(element.name, element.alltodos));
+                projectscontroller();
+            });
+        }
 
-    mainPage();
+      }    
+
     const project_btn = document.querySelector('.create-project-btn');
     project_btn.addEventListener('click', function(){
         const name= window.prompt('Enter Name for the Project: ');
         if (name){
-        projectslist.push(ProjectFactory(name));
-        localStorage.setItem('projectslist', projectslist);
+        projectslist.push(ProjectFactory(name, []));
         }
         else{
             alert("Name cannot be Empty")            
@@ -28,6 +32,8 @@ const servePage = (() =>{
 
     });
     function projectscontroller(){
+        localStorage.setItem('projectslist', JSON.stringify(projectslist));                 //Storing locally
+        console.log('New Item was added or updated');
         showProjects(projectslist);      
         const proj = document.querySelectorAll('.project');
         const delbtn = document.querySelectorAll('.delete-project-icon');
@@ -63,7 +69,8 @@ const servePage = (() =>{
     
     function deleteProject(event){
         const projectId = this.getAttribute("projectid");
-        projectslist.splice(projectId, 1);     
+        projectslist.splice(projectId, 1);   
+        localStorage.setItem('projectslist', JSON.stringify(projectslist));   
         if(projectslist.length ==0){
             const container = document.querySelector('.content');
             container.innerHTML = ``;
@@ -89,7 +96,6 @@ const servePage = (() =>{
     }
 
     function TodoController(target_id){
-        
         var delTodoIcon = document.querySelectorAll('.delete-todo-icon');
         delTodoIcon.forEach(el => {
             el.addEventListener('click', deleteTodo)
@@ -106,6 +112,7 @@ const servePage = (() =>{
                 priority = document.getElementById('priority').value;
                 var newtodo = todoFactory(title, desc, duedate, priority);
                 projectslist[target_id].addTodo(newtodo);
+                localStorage.setItem('projectslist', JSON.stringify(projectslist));         //adding to local storage
                 shownewTodo(newtodo, projectslist[target_id].todosInd());   
                 delTodoIcon = [];
                 delTodoIcon = document.querySelectorAll('.delete-todo-icon')
@@ -126,7 +133,8 @@ const servePage = (() =>{
         const proj = document.querySelector('.active-project');
         const activeProject = proj.id;
         const todoId = this.parentNode.getAttribute('todo-id');
-        projectslist[activeProject].alltodos.splice(todoId, 1);        
+        projectslist[activeProject].alltodos.splice(todoId, 1);       
+        localStorage.setItem('projectslist', JSON.stringify(projectslist));  
         showTodos(projectslist[activeProject].getAllTodos(), projectslist[activeProject].name);          
         TodoController(activeProject)
     }

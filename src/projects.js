@@ -1,5 +1,5 @@
-export default function ProjectFactory(name){
-    var alltodos = [];
+export default function ProjectFactory(name, todos){
+    var alltodos = todos;
     const getAllTodos = () => alltodos;
     const addTodo = (todo) => alltodos.push(todo);
     const todosInd = () => alltodos.length-1;
