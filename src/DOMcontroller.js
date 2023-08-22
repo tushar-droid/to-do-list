@@ -170,7 +170,6 @@ function openTodo(event){
     const btn = document.createElement('button');
     btn.classList.add('close-modal');
     btn.textContent = 'X';
-
     btn.addEventListener('click', function(){
         bd.remove();
     });
