@@ -145,8 +145,10 @@ function createForm(container){
     `
 }
 
-function openTodo(){
-    console.warn('this is this', this)
+function openTodo(event){
+    if(event.target.classList == 'delete-todo-icon'){
+        return;
+    }
     const bd = document.createElement('div')
     const modal = document.createElement('div');
     modal.classList.add('todo-modal');   

@@ -57,8 +57,9 @@ body{
     cursor: pointer;
     display: flex;
     height: 80%;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: rgba(179, 177, 177, 0.533);
+    padding: 0px 10%;
 }
 
 .right{
@@ -99,10 +100,26 @@ body{
 }
 
 .create-project-btn{
-    background-color: lightgray;
-    font-size: 30px;
+    color: white;
+    font-size: 20px;
     margin-top: 40px;
+    width:80%;
+    align-self: center;
+    height:6%;
+    text-transform: capitalize;
+    background-color: rgba(255, 255, 255, 0.306);
+    border: none;
+    border-radius: 20px;
+    transition: all 0.3s;
 }
+
+.create-project-btn:hover{
+    transform: scale(1.05) perspective(1px);
+    background-color:var(--ft);
+    color:var(--bg);
+    box-shadow: 0px 0px 50px 16px gray;
+}
+
 
 .delete-project-icon{
     height: 50%;
@@ -226,10 +243,10 @@ form >*{
 }
 
 .empty-image{
-    height: 50%;
-    width:40%;
-    padding-left: 25%;
-    padding-top:10%;
+    height: 30vh;
+    width:auto;
+    align-self: center;
+    padding-top: 10%;   
 }
 
 .project{
