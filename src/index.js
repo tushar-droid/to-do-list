@@ -9,7 +9,6 @@ const servePage = (() =>{
     var projectslist = [];
     if (storageAvailable("localStorage")) {
         var stored_list = (JSON.parse(localStorage.getItem('projectslist')))
-        console.log(stored_list);
         if(stored_list !==null){
             stored_list.forEach(element => {
                 projectslist.push(ProjectFactory(element.name, element.alltodos));
@@ -33,7 +32,6 @@ const servePage = (() =>{
     });
     function projectscontroller(){
         localStorage.setItem('projectslist', JSON.stringify(projectslist));                 //Storing locally
-        console.log('New Item was added or updated');
         showProjects(projectslist);      
         const proj = document.querySelectorAll('.project');
         const delbtn = document.querySelectorAll('.delete-project-icon');
@@ -51,7 +49,6 @@ const servePage = (() =>{
         const prev_proj = document.querySelector('.active-project');                
                 if(prev_proj){
                     prev_proj.classList.remove('active-project');
-                    console.log('this also worked')
                 }                                    
                 this.classList.add('active-project');
                 var target_id = event.target.id;

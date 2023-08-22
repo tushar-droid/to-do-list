@@ -275,8 +275,9 @@ form >*{
 
 .todo-modal{
     background-color: white;
-    height:50%;
-    width: 45%;
+    background-color: black;
+    height:70%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -284,4 +285,18 @@ form >*{
     position: relative;
     font-size: 15px;
     overflow: hidden;
+    border-radius: 20px;
+}
+
+.todo-modal-container{
+    background-color: rgba(108, 105, 105, 0.646);
+    color: var(--ft);
+    height: 60%;
+    width: 60%;
+    padding: 40px 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

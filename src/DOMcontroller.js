@@ -151,20 +151,22 @@ function openTodo(event){
     }
     const bd = document.createElement('div')
     const modal = document.createElement('div');
+    const modal_cont = document.createElement('div');
+    modal_cont.classList.add('todo-modal-container');
     modal.classList.add('todo-modal');   
     const title = document.createElement('h1');
     const desc = document.createElement('h2');
     const pr = document.createElement('h2');
     const duedate = document.createElement('h2');
-    title.textContent = this.querySelector('.todo-title').textContent;
-    desc.textContent = this.querySelector('.todo-desc').textContent;
-    duedate.textContent = this.querySelector('.todo-duedate').textContent;
-    pr.textContent = this.querySelector('.todo-priority').classList[1];
-    modal.appendChild(title);
-    modal.appendChild(desc);
-    modal.appendChild(duedate);
-    modal.appendChild(pr);
-
+    title.textContent =`TITLE: \u00A0\u00A0\u00A0\u00A0 ${this.querySelector('.todo-title').textContent}`;
+    desc.textContent = `DESCRIPTION: \u00A0\u00A0\u00A0\u00A0 ${this.querySelector('.todo-desc').textContent}`;
+    duedate.textContent = `DUE DATE: \u00A0\u00A0\u00A0\u00A0 ${this.querySelector('.todo-duedate').textContent}`;
+    pr.textContent = `PRIORITY: \u00A0\u00A0\u00A0\u00A0 ${this.querySelector('.todo-priority').classList[1]}`;
+    modal_cont.appendChild(title);
+    modal_cont.appendChild(desc);
+    modal_cont.appendChild(duedate);
+    modal_cont.appendChild(pr);
+    modal.appendChild(modal_cont);
     const btn = document.createElement('button');
     btn.classList.add('close-modal');
     btn.textContent = 'X';
